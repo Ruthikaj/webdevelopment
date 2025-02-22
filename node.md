@@ -186,8 +186,169 @@ Using **load balancing** and **multiple instances**.
 - Use **Garbage Collection monitoring**.  
 - Stream large files instead of reading them fully.
 
+
+
+
 ### **99. What is backpressure in Node.js?**  
 Backpressure occurs when the producer (server) sends data faster than the consumer can process.
+
+
+Here are **100 Node.js interview questions and answers**, categorized from **basic to advanced**:
+
+---
+
+## **Basic Questions (1-25)**
+### **1. What is Node.js?**  
+Node.js is a runtime environment that allows executing JavaScript code outside the browser, built on Chrome’s V8 engine.
+
+### **2. Why is Node.js single-threaded?**  
+Node.js follows the event-driven, non-blocking I/O model using an event loop to handle multiple requests efficiently on a single thread.
+
+### **3. What is the V8 engine?**  
+V8 is Google’s high-performance JavaScript engine that compiles JavaScript directly to machine code for faster execution.
+
+### **4. What is the purpose of `require()` in Node.js?**  
+`require()` is used to import external modules, JSON files, or local files into a Node.js application.
+
+### **5. What is the difference between CommonJS and ES Modules?**  
+CommonJS (`require()`) is used in Node.js, while ES Modules (`import/export`) are the standard for JavaScript but require `"type": "module"` in `package.json`.
+
+### **6. How do you install Node.js?**  
+Download and install it from [Node.js official site](https://nodejs.org) or use a package manager (`brew install node` for Mac, `choco install nodejs` for Windows).
+
+### **7. What is NPM? How is it different from Yarn?**  
+NPM (Node Package Manager) is the default package manager for Node.js. Yarn is an alternative with better performance and security features.
+
+### **8. How do you check the installed Node.js version?**  
+Run `node -v` or `npm -v` in the terminal.
+
+### **9. How do you create a simple server in Node.js?**  
+```javascript
+const http = require("http");
+const server = http.createServer((req, res) => {
+  res.write("Hello, World!");
+  res.end();
+});
+server.listen(3000, () => console.log("Server running on port 3000"));
+```
+
+### **10. What is a callback function in Node.js?**  
+A callback is a function passed as an argument to another function, executed after the completion of an asynchronous operation.
+
+### **11. What is the event loop in Node.js?**  
+The event loop continuously monitors the call stack and message queue, handling asynchronous operations efficiently.
+
+### **12. What is the difference between `setTimeout()` and `setImmediate()`?**  
+- `setTimeout(fn, 0)` executes after a minimum delay.
+- `setImmediate(fn)` executes immediately after the I/O phase in the event loop.
+
+### **13. What is an event emitter in Node.js?**  
+An event emitter is a pattern in Node.js where objects can emit and listen to events.  
+Example:
+```javascript
+const EventEmitter = require('events');
+const emitter = new EventEmitter();
+emitter.on('greet', () => console.log('Hello!'));
+emitter.emit('greet');
+```
+
+### **14. What are streams in Node.js?**  
+Streams are objects that let you read/write data efficiently. Example: `fs.createReadStream()` reads a file in chunks.
+
+### **15. What are the different types of streams in Node.js?**  
+1. Readable Streams (e.g., file reading)
+2. Writable Streams (e.g., file writing)
+3. Duplex Streams (e.g., socket communication)
+4. Transform Streams (e.g., compression)
+
+### **16. What is the purpose of `process` in Node.js?**  
+The `process` object provides information about the current running Node.js process.
+
+### **17. What is `__dirname` in Node.js?**  
+`__dirname` returns the absolute path of the directory containing the current script.
+
+### **18. What is `__filename` in Node.js?**  
+`__filename` returns the absolute path of the current script file.
+
+### **19. How do you read and write files in Node.js?**  
+```javascript
+const fs = require('fs');
+fs.writeFileSync('test.txt', 'Hello, Node.js!');
+console.log(fs.readFileSync('test.txt', 'utf8'));
+```
+
+### **20. What is the difference between synchronous and asynchronous file operations?**  
+- Synchronous operations (`fs.readFileSync`) block code execution until the task completes.
+- Asynchronous operations (`fs.readFile`) use callbacks/promises and allow the rest of the code to execute.
+
+### **21. How do you handle errors in Node.js?**  
+By using try-catch for synchronous errors and `.catch()` for promises.
+
+---
+
+## **Intermediate Questions (22-50)**
+### **22. What is the difference between `fs.readFile()` and `fs.createReadStream()`?**  
+- `fs.readFile()` loads the entire file into memory.  
+- `fs.createReadStream()` reads the file in chunks (efficient for large files).
+
+### **23. What is middleware in Express.js?**  
+Middleware functions modify request/response objects before reaching the route handler.
+
+### **24. What is the difference between `PUT` and `PATCH` in REST API?**  
+- `PUT` replaces the entire resource.  
+- `PATCH` updates only specific fields.
+
+### **25. How do you handle file uploads in Node.js?**  
+Using `multer` package:
+```javascript
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
+```
+
+---
+
+## **Advanced Questions (51-100)**
+### **51. What is clustering in Node.js?**  
+Clustering allows running multiple instances of Node.js processes on multiple CPU cores.
+
+### **52. What is the `child_process` module?**  
+It allows running external processes within a Node.js script.
+
+### **53. What is WebSocket in Node.js?**  
+A WebSocket provides a real-time, bi-directional communication channel between client and server.
+
+### **54. How do you secure a Node.js application?**  
+- Use environment variables for secrets  
+- Validate user inputs  
+- Use HTTPS  
+- Implement rate limiting
+
+### **55. What is the purpose of `jsonwebtoken (JWT)` in Node.js?**  
+JWT is used for secure authentication between clients and servers.
+
+### **56. What is the `helmet` package in Node.js?**  
+`helmet` is a middleware that enhances security by setting HTTP headers.
+
+### **57. How do you prevent SQL injection in Node.js?**  
+By using parameterized queries:
+```javascript
+db.query("SELECT * FROM users WHERE username = ?", [username]);
+```
+
+### **58. What is GraphQL? How is it different from REST?**  
+GraphQL is a query language for APIs that allows fetching only the required data, unlike REST which sends fixed responses.
+
+### **59. What is the difference between `socket.io` and WebSockets?**  
+- WebSockets provide low-level bi-directional communication.  
+- `socket.io` is a library built on WebSockets with additional features.
+
+### **60. How do you optimize Node.js performance?**  
+- Use caching (Redis)  
+- Optimize database queries  
+- Enable compression (gzip)  
+- Use PM2 for process management  
+
+
 
 ### **100. How do you implement message queues in Node.js?**  
 Using **RabbitMQ** or **Kafka** for async processing.
